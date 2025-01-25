@@ -12,7 +12,7 @@ Ans: `24.3.1`
 Process:
  From the docker compose file we can see the database service name is "db" and the port for the database is 5432
 
-Ans: `db:5433`
+Ans: `db:5432`
 
 
 ## Preparation of Postgresql and NY Taxi Data
