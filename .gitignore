@@ -1,0 +1,8 @@
+# Virtual Environment
+homework_01_env/
+
+# Environment Variables
+.env
+
+# Python Cache
+__pycache__/

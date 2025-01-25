@@ -1,0 +1,14 @@
+# Python Cache
+__pycache__/
+
+# Local Python Environment
+homework_01_env/
+
+# Python Tooling
+.flake8
+
+# Git Related
+.gitignore
+
+# Docker Related
+docker-compose.yaml

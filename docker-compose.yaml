@@ -1,0 +1,43 @@
+services:
+
+  # Postgres Database Service
+  db:
+    container_name: homework-postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${HOMEWORK_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${HOMEWORK_POSTGRES_PASS}
+      POSTGRES_DB: "ny-green-taxi"
+    ports:
+      - "5434:5432"
+    volumes:
+      - homework_postgres_volume:/var/lib/postgresql/data
+
+  # Pgadmin Service
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${HOMEWORK_PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${HOMEWORK_PGADMIN_PASS}
+    ports:
+      - "18080:80"
+    volumes:
+      - homework_pgadmin_volume:/var/lib/pgadmin
+
+  # Data Ingestion Service
+  data_ingestion:
+    container_name: data_ingestion
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+volumes:
+  homework_postgres_volume:
+    name: hw_postgres_volume
+  homework_pgadmin_volume:
+    name: hw_pgadmin_volume
